@@ -2,6 +2,15 @@ def createMatriz(rows, columns):
     return [[None]*columns for _ in range(rows)]
 
 
+class Position():
+    def __init__(self, row, column):
+        self._row = row
+        self._column = column
+
+    def __str__(self):
+        return f'{self._row}, {self._column}'
+
+
 class Board():
     def __init__(self, rows, columns):
         self._rows = rows
@@ -17,4 +26,4 @@ class Piece():
 
 
 if __name__ == '__main__':
-    print(Board(8, 8)._pieces)
+    print(Position(3,5))
