@@ -14,7 +14,7 @@ class UI():
 
     @staticmethod
     def printPiece(piece):
-        if piece._board == None:
+        if piece == None:
             print('-', end='')
         else:
             print(piece, end='')
