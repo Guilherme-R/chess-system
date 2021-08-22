@@ -27,9 +27,19 @@ class ChessMatch():
         self._board.placePiece(piece, ChessPosition(column, row).toPosition())
 
     def initialSetup(self):
-        self.placeNewPiece('b', 6, Rook(self._board, Color.WHITE))
-        self.placeNewPiece('e', 8, King(self._board, Color.WHITE))
-        self.placeNewPiece('e', 1, King(self._board, Color.BLACK))
+        self.placeNewPiece('c', 1, Rook(self._board, Color.WHITE))
+        self.placeNewPiece('c', 2, Rook(self._board, Color.WHITE))
+        self.placeNewPiece('d', 2, Rook(self._board, Color.WHITE))
+        self.placeNewPiece('e', 2, Rook(self._board, Color.WHITE))
+        self.placeNewPiece('e', 1, Rook(self._board, Color.WHITE))
+        self.placeNewPiece('d', 1, King(self._board, Color.WHITE))
+
+        self.placeNewPiece('c', 7, Rook(self._board, Color.BLACK))
+        self.placeNewPiece('c', 8, Rook(self._board, Color.BLACK))
+        self.placeNewPiece('d', 7, Rook(self._board, Color.BLACK))
+        self.placeNewPiece('e', 7, Rook(self._board, Color.BLACK))
+        self.placeNewPiece('e', 8, Rook(self._board, Color.BLACK))
+        self.placeNewPiece('d', 8, King(self._board, Color.BLACK))
 
 
 class ChessPosition():

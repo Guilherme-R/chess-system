@@ -1,7 +1,12 @@
-from chess import ChessMatch
+from chess import ChessMatch, Color
 
 
 class UI():
+
+    white = '\033[1;37m'
+    yellow = '\033[1;33m'
+
+    reset = '\033[0;0m'
 
     @staticmethod
     def printBoard(pieces):
@@ -17,8 +22,11 @@ class UI():
         if piece == None:
             print('-', end='')
         else:
-            print(piece, end='')
-        print(' ', end='')
+            if piece._color == Color.WHITE:
+                print(UI.white + f'{piece}', end='')
+            else:
+                print(UI.yellow + f'{piece}', end='')
+        print(' ', end=UI.reset)
 
 
 if __name__ == '__main__':
