@@ -23,10 +23,30 @@ class ChessMatch():
                 mat[i][j] = self._board._pieces[i][j]
         return mat
 
+    def placeNewPiece(self, column, row, piece):
+        self._board.placePiece(piece, ChessPosition(column, row).toPosition())
+
     def initialSetup(self):
-        self._board.placePiece(Rook(self._board, Color.WHITE), Position(2, 1))
-        self._board.placePiece(King(self._board, Color.WHITE), Position(7, 4))
-        self._board.placePiece(King(self._board, Color.BLACK), Position(0, 4))
+        self.placeNewPiece('b', 6, Rook(self._board, Color.WHITE))
+        self.placeNewPiece('e', 8, King(self._board, Color.WHITE))
+        self.placeNewPiece('e', 1, King(self._board, Color.BLACK))
+
+
+class ChessPosition():
+    def __init__(self, column, row):
+        if column < 'a' or column > 'h' or row < 1 or row > 8:
+            raise ChessException('Error instantiating ChessPosition. Valid values are from a1 to h8')
+        self._row = row
+        self._column = column
+
+    def toPosition(self):
+        return Position(8 - self._row, ord(self._column) - ord('a'))
+
+    def fromPosition(self):
+        return ChessPosition(ord('a') - ord(self._column), 8 - self._row)
+
+    def __str__(self):
+        return f'{self._column}{self._row}'
 
 
 class ChessPiece(Piece):
@@ -49,3 +69,11 @@ class King(ChessPiece):
 
     def __str__(self):
         return 'K'
+
+
+class ChessException(Exception):
+    def __init__(self, msg):
+        self._msg = msg
+
+    def __str__(self):
+        return self._msg
