@@ -1,12 +1,18 @@
-from chess import ChessMatch, Color
+from chess import ChessMatch, ChessPosition, Color
 
 
 class UI():
 
     white = '\033[1;37m'
     yellow = '\033[1;33m'
-
     reset = '\033[0;0m'
+
+    @staticmethod
+    def readChessPosition():
+        value = input()
+        if len(value) != 2 :
+            raise ValueError('Invalid value')
+        return ChessPosition(value[:1], int(value[1:]))
 
     @staticmethod
     def printBoard(pieces):
@@ -31,4 +37,15 @@ class UI():
 
 if __name__ == '__main__':
     chessMatch = ChessMatch()
-    UI.printBoard(chessMatch.getPieces())
+
+    while True:
+        UI.printBoard(chessMatch.getPieces())
+        print()
+        print('Source: ', end='')
+        source = UI.readChessPosition()
+
+        print()
+        print('Target: ', end='')
+        target = UI.readChessPosition()
+
+        capturedPiece = chessMatch.performChessMove(source, target)

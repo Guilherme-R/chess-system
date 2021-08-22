@@ -23,6 +23,25 @@ class ChessMatch():
                 mat[i][j] = self._board._pieces[i][j]
         return mat
 
+    def performChessMove(self, sourcePosition, targetPosition):
+        source = sourcePosition.toPosition()
+        target = targetPosition.toPosition()
+        self._validatedSourcePosition(source)
+        capturedPiece = self.makeMove(source, target)
+        return capturedPiece
+
+    def makeMove(self, source, target):
+        p = self._board.removePiece(source)
+        capturedPiece = self._board.removePiece(target)
+        self._board.placePiece(p, target)
+        return capturedPiece
+
+
+    def _validatedSourcePosition(self, position):
+        if not self._board.thereIsAPiece(position):
+            raise ChessException('There is no piece on source position')
+        
+
     def placeNewPiece(self, column, row, piece):
         self._board.placePiece(piece, ChessPosition(column, row).toPosition())
 

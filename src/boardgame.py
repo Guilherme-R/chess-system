@@ -35,6 +35,16 @@ class Board():
         self._pieces[position._row][position._column] = piece
         piece._position = position
 
+    def removePiece(self, position):
+        if(not self.positionExists(position)):
+            raise BoardException('Position not on the board!')
+        if self.PiecePosition(position) == None:
+            return None
+        aux = self.PiecePosition(position)
+        aux._position = None
+        self._pieces[position._row][position._column] = None
+        return aux
+
     def _positionExists(self, row, column):
         return row >= 0 and row < self._rows and column >= 0 and column < self._columns
 
